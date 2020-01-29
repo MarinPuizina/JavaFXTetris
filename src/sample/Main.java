@@ -25,6 +25,9 @@ public class Main extends Application {
         }
 
         ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(600);
+        imageView.setFitWidth(800);
+
         root.getChildren().addAll(imageView);
 
         Scene scene = new Scene(root);
