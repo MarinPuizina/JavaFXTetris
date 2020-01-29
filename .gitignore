@@ -1,0 +1,19 @@
+*.class
+
+# Package Files #
+*.war
+*.ear
+
+# IDEA #
+.idea/
+*.iml
+out/
+lib/
+
+# Maven #
+dependency-reduced-pom.xml
+target/
+
+# logs #
+*.log
+logs/
