@@ -26,6 +26,7 @@ import java.nio.file.Paths;
 
 public class Main extends Application {
 
+    private GameMenu gameMenu;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -42,6 +43,7 @@ public class Main extends Application {
         imageView.setFitHeight(600);
         imageView.setFitWidth(800);
 
+        gameMenu = new GameMenu();
 
         root.getChildren().addAll(imageView, gameMenu);
 
@@ -59,7 +61,7 @@ public class Main extends Application {
 
             // Menu text
             text = new Text(name);
-            text.setFont(text.getFont().font(35));
+            text.setFont(text.getFont().font(30));
             text.setFill(Color.GREEN);
 
             // Menu
@@ -98,7 +100,88 @@ public class Main extends Application {
 
     }
 
+    private class GameMenu extends Parent {
 
+        public GameMenu() {
+
+            VBox menu0 = new VBox(10);
+            VBox menu1 = new VBox(10);
+
+            menu0.setTranslateX(100);
+            menu0.setTranslateY(200);
+
+            menu1.setTranslateX(100);
+            menu1.setTranslateY(200);
+
+            final int offset = 400;
+
+            menu1.setTranslateX(offset);
+
+            MenuButton btnStart = new MenuButton("START");
+            btnStart.setOnMouseClicked(event -> {
+                FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
+                ft.setFromValue(1);
+                ft.setToValue(0);
+                ft.setOnFinished(evt -> setVisible(false));
+                ft.play();
+            });
+
+            MenuButton btnExit = new MenuButton("EXIT");
+            btnExit.setOnMouseClicked(event -> {
+                System.exit(0);
+            });
+
+            MenuButton btnAbout = new MenuButton("ABOUT");
+            btnAbout.setOnMouseClicked(event -> {
+                getChildren().add(menu1);
+
+                TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu0);
+                tt.setToX(menu0.getTranslateX() - offset);
+
+                TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu1);
+                tt1.setToX(menu0.getTranslateX());
+
+                tt.play();
+                tt1.play();
+
+                tt.setOnFinished(evt -> {
+                    getChildren().remove(menu0);
+                });
+            });
+
+            MenuButton btnBack = new MenuButton("BACK");
+            btnBack.setOnMouseClicked(event -> {
+                getChildren().add(menu0);
+
+                TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu1);
+                tt.setToX(menu1.getTranslateX() + offset);
+
+                TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu0);
+                tt1.setToX(menu1.getTranslateX());
+
+                tt.play();
+                tt1.play();
+
+                tt.setOnFinished(evt -> {
+                    getChildren().remove(menu1);
+                });
+            });
+
+            MenuButton btnSound = new MenuButton("TETRIS");
+            MenuButton btnVideo = new MenuButton("by Marin Puizina");
+
+            menu0.getChildren().addAll(btnStart, btnExit, btnAbout);
+            menu1.getChildren().addAll(btnSound, btnVideo, btnBack);
+
+            Rectangle bg = new Rectangle(800, 600);
+            bg.setFill(Color.GREY);
+            bg.setOpacity(0.2);
+
+            getChildren().addAll(bg, menu0);
+
+        }
+
+    }
 
 
     public static void main(String[] args) {
