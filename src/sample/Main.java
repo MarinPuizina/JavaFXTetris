@@ -104,6 +104,7 @@ public class Main extends Application {
 
         public GameMenu() {
 
+            // Main menu and transition menu
             VBox menu0 = new VBox(10);
             VBox menu1 = new VBox(10);
 
@@ -117,6 +118,7 @@ public class Main extends Application {
 
             menu1.setTranslateX(offset);
 
+            // Menu options
             MenuButton btnStart = new MenuButton("START");
             btnStart.setOnMouseClicked(event -> {
                 FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
@@ -167,6 +169,7 @@ public class Main extends Application {
                 });
             });
 
+            // ABOUT menu options
             MenuButton btnSound = new MenuButton("TETRIS");
             MenuButton btnVideo = new MenuButton("by Marin Puizina");
 
