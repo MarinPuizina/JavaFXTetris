@@ -162,9 +162,7 @@ public class Main extends Application {
                 tt.play();
                 tt1.play();
 
-                tt.setOnFinished(evt -> {
-                    getChildren().remove(menu1);
-                });
+                tt.setOnFinished(evt -> getChildren().remove(menu1));
             });
 
             // ABOUT menu options
