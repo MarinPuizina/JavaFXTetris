@@ -144,9 +144,7 @@ public class Main extends Application {
                 tt.play();
                 tt1.play();
 
-                tt.setOnFinished(evt -> {
-                    getChildren().remove(menu0);
-                });
+                tt.setOnFinished(evt -> getChildren().remove(menu0));
             });
 
             MenuButton btnBack = new MenuButton("BACK");
