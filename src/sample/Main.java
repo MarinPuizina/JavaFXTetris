@@ -129,9 +129,7 @@ public class Main extends Application {
             });
 
             MenuButton btnExit = new MenuButton("EXIT");
-            btnExit.setOnMouseClicked(event -> {
-                System.exit(0);
-            });
+            btnExit.setOnMouseClicked(event -> System.exit(0));
 
             MenuButton btnAbout = new MenuButton("ABOUT");
             btnAbout.setOnMouseClicked(event -> {
